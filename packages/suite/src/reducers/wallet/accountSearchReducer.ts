@@ -1,5 +1,6 @@
 import produce from 'immer';
 
+import { deviceActions } from '@suite-common/wallet-core';
 import * as walletSettingsActions from 'src/actions/settings/walletSettingsActions';
 import { ACCOUNT_SEARCH } from 'src/actions/wallet/constants';
 import { Action } from 'src/types/suite';
@@ -34,6 +35,11 @@ const accountSearchReducer = (state: State = initialState, action: Action): Stat
                 }
                 break;
             }
+
+            // reset coin filter search
+            case deviceActions.selectDevice.type:
+                draft.searchString = undefined;
+                break;
 
             // no default
         }
